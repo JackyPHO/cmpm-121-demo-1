@@ -18,17 +18,22 @@ app.append(button);
 const score: HTMLDivElement = document.querySelector("#score")!;
 let counter = 0;
 const s = document.createElement("Score");
-button.addEventListener("click", function () {
-  counter++;
-  s.textContent = counter + " Aliens Spawned";
+button.addEventListener("click", function(){
+    counter++;
+    s.textContent = counter + " Aliens";
     score.append(s);
 });
 
-//Step 3: Add 1 every second on top of the click score
-function update(){
-    counter++;
-    s.textContent = counter + " Aliens Spawned";
-    score.append(s);
+//Step 4: Add 1/framerate on top of the click score
+let last = performance.now();
+function update(timestamp: number) {
+  const delta = timestamp - last;
+  last = timestamp;
+  const fps = 1000 / delta;
+  counter += 1/fps;
+  s.textContent = counter.toFixed(5) + " Aliens";
+  score.append(s);
+  requestAnimationFrame(update);
 }
-setInterval(update, 1000);
+requestAnimationFrame(update);
 
