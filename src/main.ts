@@ -2,7 +2,7 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "Clicker";
+const gameName = "Alien Clicker";
 document.title = gameName;
 
 const header = document.createElement("HIIIII");
@@ -12,3 +12,12 @@ const button = document.createElement("button");
 button.className = "button";
 button.textContent = "👽";
 app.append(button);
+
+const score: HTMLDivElement = document.querySelector("#score")!;
+let counter = 0;
+const s = document.createElement("Score");
+button.addEventListener("click", function(){
+    counter++;
+    s.textContent = counter + " Aliens Spawned";
+});
+score.append(s);
