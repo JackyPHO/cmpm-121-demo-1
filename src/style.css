@@ -50,6 +50,14 @@ h1 {
   bottom: 0;
   right: 0;
 }
+#grow {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  right: 1;
+}
 
 button {
   border-radius: 8px;
