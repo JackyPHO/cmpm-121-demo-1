@@ -38,6 +38,9 @@ h1 {
 
 #app {
   max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -58,8 +61,8 @@ h1 {
   margin: 2 auto;
   padding: 2rem;
   position: absolute;
-  bottom: 8%;
-  left: 30%;
+  bottom: 10%;
+  left: 35%;
 }
 #shop {
   max-width: 640px;
@@ -67,17 +70,18 @@ h1 {
   padding: 2rem;
   position: absolute;
   line-height: 50px;
-  bottom: 0;
-  left: 35%;
+  bottom: 2%;
+  left: 40%;
 }
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid;
+  border-color: #23d39e;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #267551;
   cursor: pointer;
   transition: border-color 0.25s;
 }
