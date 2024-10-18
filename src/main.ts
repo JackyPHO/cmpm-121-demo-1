@@ -57,9 +57,10 @@ let c3 = 1000;
 const g = document.createElement("Growth");
 updateText();
 
+//Step 8: Consistent narrative
 const b2 = document.createElement("button");
 b2.className = "button";
-b2.textContent = "🚀";
+b2.textContent = "🚀 Rocket";
 grow.appendChild(b2);
 b2.addEventListener("click", function () {
   mul += 0.1;
@@ -71,7 +72,7 @@ b2.addEventListener("click", function () {
 
 const b3 = document.createElement("button");
 b3.className = "button";
-b3.textContent = "🛸";
+b3.textContent = "🛸UFO";
 grow.appendChild(b3);
 b3.addEventListener("click", function () {
   mul += 2;
@@ -83,7 +84,7 @@ b3.addEventListener("click", function () {
 
 const b4 = document.createElement("button");
 b4.className = "button";
-b4.textContent = "👾";
+b4.textContent = "👾Galaxy";
 grow.appendChild(b4);
 b4.addEventListener("click", function () {
   mul += 50;
@@ -93,9 +94,12 @@ b4.addEventListener("click", function () {
   updateText();
 });
 function updateText() {
-  p1.innerText = "-" + c1.toFixed(2) + " Aliens = +0.1 Aliens/sec : " + q1 + "\n";
-  p2.innerText = "-" + c2.toFixed(2) + " Aliens = +2.0 Aliens/sec : " + q2 + "\n";
-  p3.innerText = "-" + c3.toFixed(2) + " Aliens = +50 Aliens/sec : " + q3 + "\n";
+  p1.innerText =
+    "-" + c1.toFixed(2) + " Aliens = +0.1 Aliens/sec : " + q1 + "\n";
+  p2.innerText =
+    "-" + c2.toFixed(2) + " Aliens = +2.0 Aliens/sec : " + q2 + "\n";
+  p3.innerText =
+    "-" + c3.toFixed(2) + " Aliens = +50 Aliens/sec : " + q3 + "\n";
   g.textContent = "Growth Rate : " + mul.toFixed(1) + " Aliens/sec";
   shop.append(p1);
   shop.append(p2);

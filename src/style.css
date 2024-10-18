@@ -5,8 +5,8 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  background-color: #190a23;
+  background:url("images/space-with-stars-galaxy-background-vector-24554920.jpg");
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -42,8 +42,8 @@ h1 {
   flex-direction: column;
   justify-content: flex-end;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  bottom: 0;
+  left: 0;
 }
 #score {
   max-width: 1280px;
@@ -58,11 +58,11 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin: 2 auto;
+  margin: 0 auto;
   padding: 2rem;
   position: absolute;
   bottom: 10%;
-  left: 35%;
+  left: 31%;
 }
 #shop {
   max-width: 640px;
@@ -73,6 +73,7 @@ h1 {
   bottom: 2%;
   left: 40%;
 }
+
 button {
   border-radius: 8px;
   border: 1px solid;
