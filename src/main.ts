@@ -42,86 +42,44 @@ requestAnimationFrame(update);
 const grow: HTMLDivElement = document.querySelector("#grow")!;
 const shop: HTMLDivElement = document.querySelector("#shop")!;
 
-const p1 = document.createElement("Price1");
-const p2 = document.createElement("Price2");
-const p3 = document.createElement("Price3");
-let q1 = 0;
-let q2 = 0;
-let q3 = 0;
-
-//Step 7: Price increases
-let c1 = 10;
-let c2 = 100;
-let c3 = 1000;
-
+//Step 9: Data-driven design
+interface Item {
+    name: string,
+    symbol: string,
+    cost: number,
+    rate: number,
+    button: HTMLButtonElement,
+    tracker: number,
+    text: HTMLElement
+  };
+  
+const availableItems : Item[] = [
+    {name: "🚀 Rocket", symbol: "🚀", cost: 10, rate: 0.1, button: document.createElement("button"), tracker: 0, text: document.createElement("Price")},
+    {name: "🛸 UFO", symbol: "🛸", cost: 100, rate: 2, button: document.createElement("button"), tracker: 0, text: document.createElement("Price")},
+    {name: "👾 Galaxy", symbol: "👾", cost: 1000, rate: 50, button: document.createElement("button"), tracker: 0, text: document.createElement("Price")},
+];
 const g = document.createElement("Growth");
-updateText();
-
-//Step 8: Consistent narrative
-const b2 = document.createElement("button");
-b2.className = "button";
-b2.textContent = "🚀 Rocket";
-grow.appendChild(b2);
-b2.addEventListener("click", function () {
-  mul += 0.1;
-  counter -= c1;
-  c1 = c1 * 1.15;
-  q1++;
-  updateText();
-});
-
-const b3 = document.createElement("button");
-b3.className = "button";
-b3.textContent = "🛸UFO";
-grow.appendChild(b3);
-b3.addEventListener("click", function () {
-  mul += 2;
-  counter -= c2;
-  c2 = c2 * 1.15;
-  q2++;
-  updateText();
-});
-
-const b4 = document.createElement("button");
-b4.className = "button";
-b4.textContent = "👾Galaxy";
-grow.appendChild(b4);
-b4.addEventListener("click", function () {
-  mul += 50;
-  counter -= c3;
-  c3 = c3 * 1.15;
-  q3++;
-  updateText();
-});
-function updateText() {
-  p1.innerText =
-    "-" + c1.toFixed(2) + " Aliens = +0.1 Aliens/sec : " + q1 + "\n";
-  p2.innerText =
-    "-" + c2.toFixed(2) + " Aliens = +2.0 Aliens/sec : " + q2 + "\n";
-  p3.innerText =
-    "-" + c3.toFixed(2) + " Aliens = +50 Aliens/sec : " + q3 + "\n";
-  g.textContent = "Growth Rate : " + mul.toFixed(1) + " Aliens/sec";
-  shop.append(p1);
-  shop.append(p2);
-  shop.append(p3);
-  shop.append(g);
+for (const items of availableItems){
+    items.button.className = "button";
+    items.button.textContent = items.name;
+    grow.appendChild(items.button);
+    items.button.addEventListener("click", function(){
+        mul += items.rate;
+        counter -= items.cost;
+        items.cost = items.cost * 1.15;
+        items.tracker++;
+    });
+    function checkButton() {
+        if (counter < items.cost) {
+          items.button.disabled = true;
+        } else {
+          items.button.disabled = false;
+        }
+        items.text.innerText = "-" + items.cost.toFixed(2) + " Aliens = +" + items.rate + " Aliens/sec : " + items.tracker + items.symbol + "\n";
+        shop.append(items.text);
+        g.innerText = "Growth Rate : " + mul.toFixed(1) + " Aliens/sec\n";
+        shop.append(g)
+        requestAnimationFrame(checkButton);
+    }
+    requestAnimationFrame(checkButton);  
 }
-function checkButton() {
-  if (counter < 10) {
-    b2.disabled = true;
-  } else {
-    b2.disabled = false;
-  }
-  if (counter < 100) {
-    b3.disabled = true;
-  } else {
-    b3.disabled = false;
-  }
-  if (counter < 1000) {
-    b4.disabled = true;
-  } else {
-    b4.disabled = false;
-  }
-  requestAnimationFrame(checkButton);
-}
-requestAnimationFrame(checkButton);
