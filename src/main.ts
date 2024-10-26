@@ -31,7 +31,7 @@ clickButton.addEventListener("click", function () {
   updateCount();
 });
 
-function calculateFPS(timestamp: number, lastFrame: number): number{
+function calculateFPS(timestamp: number, lastFrame: number): number {
   const deltaTime = timestamp - lastFrame;
   const framesPerSecond = 1000 / deltaTime;
   return framesPerSecond;
@@ -41,7 +41,7 @@ let last = performance.now();
 function update(timestamp: number) {
   const fps = calculateFPS(timestamp, last);
   last = timestamp;
-  counter = counter + growthRate / fps;
+  counter += growthRate / fps;
   updateCount();
   requestAnimationFrame(update);
 }
@@ -118,7 +118,7 @@ for (const items of availableItems) {
     items.tracker++;
   });
   function checkButton() {
-    shopButton.disabled = counter < items.cost
+    shopButton.disabled = counter < items.cost;
     items.text.innerHTML = `-${items.cost.toFixed(2)} Aliens = +${items.rate} Aliens/sec : ${items.tracker}${getFirstCharacter(items.name)}
     <br><i>${items.description}</i><br><br>`;
     shop.append(items.text);
