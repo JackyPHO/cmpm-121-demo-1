@@ -16,7 +16,7 @@ function newButton(name: string) {
 }
 const clickButton = newButton("👽");
 app.append(clickButton);
-let GrowthRate = 1;
+let growthRate = 1;
 
 const score: HTMLDivElement = document.querySelector("#score")!;
 let counter = 0;
@@ -31,12 +31,17 @@ clickButton.addEventListener("click", function () {
   updateCount();
 });
 
+function calculateFPS(timestamp: number, lastFrame: number): number{
+  const deltaTime = timestamp - lastFrame;
+  const framesPerSecond = 1000 / deltaTime;
+  return framesPerSecond;
+}
+
 let last = performance.now();
 function update(timestamp: number) {
-  const delta = timestamp - last;
+  const fps = calculateFPS(timestamp, last);
   last = timestamp;
-  const fps = 1000 / delta;
-  counter = counter + GrowthRate / fps;
+  counter = counter + growthRate / fps;
   updateCount();
   requestAnimationFrame(update);
 }
@@ -107,34 +112,17 @@ for (const items of availableItems) {
   const shopButton = newButton(items.name);
   buttonList.appendChild(shopButton);
   shopButton.addEventListener("click", function () {
-    GrowthRate += items.rate;
+    growthRate += items.rate;
     counter -= items.cost;
     items.cost *= multiplier;
     items.tracker++;
   });
   function checkButton() {
-    if (counter < items.cost) {
-      shopButton.disabled = true;
-    } else {
-      shopButton.disabled = false;
-    }
-    items.text.innerHTML =
-      "-" +
-      items.cost.toFixed(2) +
-      " Aliens = +" +
-      items.rate +
-      " Aliens/sec : " +
-      items.tracker +
-      getFirstCharacter(items.name) +
-      "<br>" +
-      "<i>" +
-      items.description +
-      "<i>" +
-      "<br>" +
-      "<br>";
+    shopButton.disabled = counter < items.cost
+    items.text.innerHTML = `-${items.cost.toFixed(2)} Aliens = +${items.rate} Aliens/sec : ${items.tracker}${getFirstCharacter(items.name)}
+    <br><i>${items.description}</i><br><br>`;
     shop.append(items.text);
-    growText.innerText =
-      "Growth Rate : " + GrowthRate.toFixed(1) + " Aliens/sec";
+    growText.innerText = `Growth Rate : ${growthRate.toFixed(1)} Aliens/sec`;
     shop.append(growText);
     requestAnimationFrame(checkButton);
   }
