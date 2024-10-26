@@ -5,43 +5,48 @@ const app: HTMLDivElement = document.querySelector("#app")!;
 const gameName = "Alien Clicker";
 document.title = gameName;
 
-const header = document.createElement("HIIIII");
+const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
-const b1 = document.createElement("button");
-b1.className = "button";
-b1.textContent = "👽";
-app.append(b1);
-let mul = 1;
+const clickButton = newButton("👽");
+app.append(clickButton);
+let GrowthRate = 1;
 
-//Step 2: Adding a click score
+
+function newButton(name:string){
+  const button = document.createElement("button");
+  button.className = "button";
+  button.textContent = name;
+  return button;
+}
 const score: HTMLDivElement = document.querySelector("#score")!;
 let counter = 0;
-const s = document.createElement("Score");
-b1.addEventListener("click", function () {
+const count = document.createElement("Score");
+function updateCount(){
+  count.textContent = counter.toFixed(5) + " Aliens";
+  score.append(count);
+}
+
+clickButton.addEventListener("click", function () {
   counter++;
-  s.textContent = counter + " Aliens";
-  score.append(s);
+  updateCount();
 });
 
-//Step 4: Add 1/framerate on top of the click score
 let last = performance.now();
 function update(timestamp: number) {
   const delta = timestamp - last;
   last = timestamp;
   const fps = 1000 / delta;
-  counter = counter + mul / fps;
-  s.textContent = counter.toFixed(5) + " Aliens";
-  score.append(s);
+  counter = counter + GrowthRate / fps;
+  updateCount();
   requestAnimationFrame(update);
 }
 requestAnimationFrame(update);
 
-//Step 6: Multiple upgrades and status
-const grow: HTMLDivElement = document.querySelector("#grow")!;
+const buttonList: HTMLDivElement = document.querySelector("#grow")!;
 const shop: HTMLDivElement = document.querySelector("#shop")!;
+const multiplier = 1.15;
 
-//Step 9: Data-driven design
 interface Item {
   name: string;
   symbol: string;
@@ -61,8 +66,8 @@ const availableItems: Item[] = [
     rate: 0.1,
     button: document.createElement("button"),
     tracker: 0,
-    text: document.createElement("Price"),
-    description: "Rockets Should Do the Trick"
+    text: document.createElement("h2"),
+    description: "Rockets Should Do the Trick",
   },
   {
     name: "🛸 UFO",
@@ -71,8 +76,8 @@ const availableItems: Item[] = [
     rate: 2,
     button: document.createElement("button"),
     tracker: 0,
-    text: document.createElement("Price"),
-    description: "Lightning Speed UFO Can Speed Up the Process"
+    text: document.createElement("h2"),
+    description: "UFO Can Speed Up the Process",
   },
   {
     name: "👾 ET",
@@ -81,39 +86,39 @@ const availableItems: Item[] = [
     rate: 50,
     button: document.createElement("button"),
     tracker: 0,
-    text: document.createElement("Price"),
-    description: "Giant ET Boss To the Rescue"
+    text: document.createElement("h2"),
+    description: "Giant ET Boss To the Rescue",
   },
   {
     name: "🌌 Universe",
     symbol: "🌌",
     cost: 10000,
-    rate: 750,
+    rate: 250,
     button: document.createElement("button"),
     tracker: 0,
-    text: document.createElement("Price"),
-    description: "Let's Spread Across the Universe"
+    text: document.createElement("h2"),
+    description: "Let's Spread Across the Universe",
   },
   {
     name: "💫 Multiverse",
     symbol: "💫",
     cost: 500000,
-    rate: 10000,
+    rate: 1000,
     button: document.createElement("button"),
     tracker: 0,
-    text: document.createElement("Price"),
-    description: "MULTIVERSE OF MADNESS"
-  }
+    text: document.createElement("h2"),
+    description: "MULTIVERSE OF MADNESS",
+  },
 ];
-const g = document.createElement("Growth");
+const growText = document.createElement("h2");
 for (const items of availableItems) {
   items.button.className = "button";
   items.button.textContent = items.name;
-  grow.appendChild(items.button);
+  buttonList.appendChild(items.button);
   items.button.addEventListener("click", function () {
-    mul += items.rate;
+    GrowthRate += items.rate;
     counter -= items.cost;
-    items.cost = items.cost * 1.15;
+    items.cost = items.cost * multiplier;
     items.tracker++;
   });
   function checkButton() {
@@ -129,13 +134,16 @@ for (const items of availableItems) {
       items.rate +
       " Aliens/sec : " +
       items.tracker +
-      items.symbol + 
+      items.symbol +
       "<br>" +
-      "<i>" + items.description + "<i>" +
-      "<br>" + "<br>";
+      "<i>" +
+      items.description +
+      "<i>" +
+      "<br>" +
+      "<br>" ;
     shop.append(items.text);
-    g.innerText = "Growth Rate : " + mul.toFixed(1) + " Aliens/sec\n";
-    shop.append(g);
+    growText.innerText = "Growth Rate : " + GrowthRate.toFixed(1) + " Aliens/sec";
+    shop.append(growText);
     requestAnimationFrame(checkButton);
   }
   requestAnimationFrame(checkButton);
