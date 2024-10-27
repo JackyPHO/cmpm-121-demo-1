@@ -16,13 +16,20 @@ function newButton(name: string) {
 }
 const clickButton = newButton("👽");
 app.append(clickButton);
-let growthRate = 1;
+let growthRate = 0;
 
 const score: HTMLDivElement = document.querySelector("#score")!;
 let counter = 0;
+function roundNumber(num: number): string{
+  if(num % 1 === 0){
+    return num.toFixed(0);
+  } else {
+    return num.toFixed(2);
+  }
+}
 const count = document.createElement("h2");
 function updateCount() {
-  count.textContent = counter.toFixed(5) + " Aliens";
+  count.textContent = roundNumber(counter) + " Aliens";
   score.append(count);
 }
 
@@ -119,7 +126,7 @@ for (const items of availableItems) {
   });
   function checkButton() {
     shopButton.disabled = counter < items.cost;
-    items.text.innerHTML = `-${items.cost.toFixed(2)} Aliens = +${items.rate} Aliens/sec : ${items.tracker}${getFirstCharacter(items.name)}
+    items.text.innerHTML = `-${roundNumber(items.cost)} Aliens = +${items.rate} Aliens/sec : ${items.tracker}${getFirstCharacter(items.name)}
     <br><i>${items.description}</i><br><br>`;
     shop.append(items.text);
     growText.innerText = `Growth Rate : ${growthRate.toFixed(1)} Aliens/sec`;
