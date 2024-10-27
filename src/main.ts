@@ -20,16 +20,12 @@ let growthRate = 0;
 
 const score: HTMLDivElement = document.querySelector("#score")!;
 let counter = 0;
-function roundNumber(num: number): string{
-  if(num % 1 === 0){
-    return num.toFixed(0);
-  } else {
-    return num.toFixed(2);
-  }
+function roundNumber(num: number): string {
+  return num.toFixed(2).replace(/\.?0+$/, '');
 }
 const count = document.createElement("h2");
 function updateCount() {
-  count.textContent = roundNumber(counter) + " Aliens";
+  count.textContent = counter.toFixed(2) + " Aliens";
   score.append(count);
 }
 
