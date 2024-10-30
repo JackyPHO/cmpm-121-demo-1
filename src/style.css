@@ -41,7 +41,7 @@ h2 {
   text-align: right;
 }
 #app {
-  max-width: 400px;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -52,7 +52,6 @@ h2 {
   left: 0;
 }
 #score {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   position: absolute;
@@ -61,7 +60,7 @@ h2 {
 }
 #shop {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 4rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
   justify-items: center;
@@ -79,7 +78,9 @@ h2 {
   text-align: center;
   opacity: 0;
   visibility: hidden; /* Initially hidden text */
-  transition: opacity 0.3s, visibility 0s 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0s 0.3s;
 }
 
 /*https://github.com/Ahhhhh123456/cmpm-121-demo-1/blob/main/src/style.css

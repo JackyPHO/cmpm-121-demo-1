@@ -24,7 +24,7 @@ clickButton.addEventListener("click", function () {
   updateCount();
 });
 
-//Score Display Updated 
+//Score Display Updated
 const score: HTMLDivElement = document.querySelector("#score")!;
 const count = document.createElement("h2");
 function updateCount() {
@@ -47,10 +47,10 @@ function updateScore(timestamp: number) {
 requestAnimationFrame(updateScore);
 
 //Alien Shop Button Interface
-const shop = document.getElementById('shop');
+const shop = document.getElementById("shop");
 const multiplier = 1.15;
 let colorChange = 138;
-let color = `rgb(74, 189, ${colorChange})`
+let color = `rgb(74, 189, ${colorChange})`;
 
 function roundNumber(num: number): string {
   return num.toFixed(2).replace(/\.?0+$/, "");
@@ -104,10 +104,10 @@ const availableItems: Item[] = [
     description: "MULTIVERSE OF MADNESS",
   },
 ];
-function createContent(button:HTMLButtonElement, text: HTMLElement){
-  const content = document.createElement('div');
-  content.classList.add('content');
-  text.classList.add('text');
+function createContent(button: HTMLButtonElement, text: HTMLElement) {
+  const content = document.createElement("div");
+  content.classList.add("content");
+  text.classList.add("text");
   content.appendChild(button);
   content.appendChild(text);
   return content;
@@ -126,17 +126,17 @@ availableItems.forEach((items) => {
     items.cost *= multiplier;
     items.tracker++;
   });
-  const shopItem = createContent(shopButton,shopText);
+  const shopItem = createContent(shopButton, shopText);
   //Updates the item count and shop text based on user input
-  function checkButton(){
+  function checkButton() {
     shopButton.disabled = counter < items.cost;
     shopText.innerHTML = `-${roundNumber(items.cost)} Aliens = +${items.rate} Aliens/sec
     <br><i>${items.description}</i>
     <br>Total ${items.tracker}${getFirstCharacter(items.name)}`;
     requestAnimationFrame(checkButton);
   }
-  if(shop){
-    shop.appendChild(shopItem)
+  if (shop) {
+    shop.appendChild(shopItem);
   }
   requestAnimationFrame(checkButton);
 });
