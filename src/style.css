@@ -61,9 +61,9 @@ h2 {
 #shop {
   margin: 0 auto;
   padding: 4rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 15px; /* Defines space between the grid items */
 }
 
