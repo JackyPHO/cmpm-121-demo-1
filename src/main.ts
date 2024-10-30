@@ -117,7 +117,7 @@ availableItems.forEach((items) => {
   //https://github.com/ishachury20/cmpm-121-demo-1/blob/main/src/main.ts
   //Background color button change from ishachury20
   shopButton.style.backgroundColor = color;
-  colorChange += 10;
+  colorChange += 30;
   color = `rgb(74, 189, ${colorChange})`;
   const shopText = document.createElement("div");
   shopButton.addEventListener("click", function () {
