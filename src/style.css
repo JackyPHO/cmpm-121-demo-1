@@ -78,6 +78,7 @@ h2 {
   text-align: center;
   opacity: 0;
   visibility: hidden; /* Initially hidden text */
+  color:rgb(196, 169, 255);
   transition:
     opacity 0.3s,
     visibility 0s 0.3s;
