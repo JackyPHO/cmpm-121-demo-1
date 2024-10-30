@@ -36,17 +36,17 @@ h1 {
   line-height: 1.1;
 }
 h2 {
-  font-size: 1em;
+  font-size: 1.5em;
   line-height: 1;
+  text-align: right;
 }
-
 #app {
-  max-width: 640px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -59,27 +59,40 @@ h2 {
   bottom: 0;
   right: 0;
 }
-#grow {
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin: 0 auto;
-  padding: 2rem;
-  position: absolute;
-  bottom: 13%;
-  left: 31%;
-}
 #shop {
-  max-width: 640px;
   margin: 0 auto;
   padding: 2rem;
-  position: absolute;
-  line-height: 20px;
-  bottom: 7%;
-  left: 41%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns of equal width */
+  justify-items: center;
+  gap: 15px; /* Defines space between the grid items */
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; /* Space between button and text */
+}
+
+.text {
+  text-align: center;
+  opacity: 0;
+  visibility: hidden; /* Initially hidden text */
+  transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+/*https://github.com/Ahhhhh123456/cmpm-121-demo-1/blob/main/src/style.css
+/*Text fade animation on button hover from Jason Li*/
+.content:hover .text {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+#shop > .content:nth-child(odd):last-child {
+  grid-column: span 2; /* This spans the content across both columns, centering it */
+  justify-self: center; /* This centers the item within its grid area */
+}
 button {
   border-radius: 8px;
   border: 1px solid;
@@ -89,7 +102,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #267551;
+  background-color: rgb(74, 189, 138);
   cursor: pointer;
   transition: border-color 0.25s;
 }
